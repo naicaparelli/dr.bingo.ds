@@ -1,0 +1,45 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:22px 26px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .grad{height:110px;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;color:#fff;border:1px solid rgba(255,255,255,.08)}
+  .grad .name{font:800 11px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .grad .use{font:500 10px/1.2 var(--font-sans);opacity:.85;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .grad .css{font:500 9.5px/1 var(--font-mono);opacity:.75;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 14px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Gradients</p>
+  <p class="sub">Styles from the Figma cover, harmonized with product CTAs. Use one per screen as an accent — never as body background.</p>
+  <div class="grid">
+    <div class="grad" style="background:linear-gradient(180deg,#AB00B9 0%,#3B00CC 100%)">
+      <span class="name">grad-cover</span>
+      <div><div class="use">Hero / wordmark shell</div><div class="css">#AB00B9 → #3B00CC</div></div>
+    </div>
+    <div class="grad" style="background:linear-gradient(135deg,#3B00CC 0%,#AB00B9 100%)">
+      <span class="name">grad-violet</span>
+      <div><div class="use">Feature cards, banners</div><div class="css">#3B00CC → #AB00B9</div></div>
+    </div>
+    <div class="grad" style="background:linear-gradient(135deg,#DE00FF 0%,#AB00B9 100%)">
+      <span class="name">grad-magenta</span>
+      <div><div class="use">Primary CTAs, active tabs</div><div class="css">#DE00FF → #AB00B9</div></div>
+    </div>
+    <div class="grad" style="background:linear-gradient(135deg,#FF66FF 0%,#8F04E0 100%)">
+      <span class="name">grad-hot</span>
+      <div><div class="use">"Hot" tags, promos</div><div class="css">#FF66FF → #8F04E0</div></div>
+    </div>
+    <div class="grad" style="background:linear-gradient(135deg,#FCEE21 0%,#F7931E 100%);color:#1a0e25">
+      <span class="name">grad-gold</span>
+      <div><div class="use">"Depósito", jackpot, coins</div><div class="css">#FCEE21 → #F7931E</div></div>
+    </div>
+    <div class="grad" style="background:linear-gradient(135deg,#CCFF00 0%,#00BA33 100%);color:#0d2600">
+      <span class="name">grad-win</span>
+      <div><div class="use">"Coletar", win moments</div><div class="css">#CCFF00 → #00BA33</div></div>
+    </div>
+  </div>
+</div></body></html>

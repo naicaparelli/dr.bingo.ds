@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field label{display:block;font:700 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:8px}
+  .input{width:100%;box-sizing:border-box;background:#15091F;color:#fff;border:1.5px solid rgba(243,230,250,.14);border-radius:12px;padding:12px 14px;font:500 14px/1 Inter;outline:none;transition:border-color .15s,box-shadow .15s}
+  .input:focus, .input.focus{border-color:#E619FF;box-shadow:0 0 0 3px rgba(230,25,255,.2),0 0 18px rgba(230,25,255,.35)}
+  .input.error{border-color:#FF3355;box-shadow:0 0 0 3px rgba(255,51,85,.2)}
+  .help{font:500 11px/1.2 Inter;margin-top:6px;color:var(--fg-muted)}
+  .help.err{color:#FF8899}
+  .toggle{width:52px;height:30px;background:rgba(243,230,250,.14);border-radius:999px;position:relative;cursor:pointer}
+  .toggle.on{background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 14px rgba(230,25,255,.45)}
+  .toggle::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s}
+  .toggle.on::after{left:25px}
+  .tog-row{display:flex;align-items:center;gap:10px}
+  .tog-row span{font:500 13px/1 Inter;color:#fff}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Inputs & Toggles</p>
+  <p class="sub">Dark-surface fields with 1.5px border; focus state ignites a magenta ring + glow. Toggles mirror the primary CTA gradient when on.</p>
+  <div class="grid">
+    <div class="field"><label>E-mail</label><input class="input" value="bingo@drbingobet.com"><div class="help">Enviaremos um código</div></div>
+    <div class="field"><label>Senha</label><input class="input focus" type="password" value="••••••••"><div class="help">Foco · magenta glow</div></div>
+    <div class="field"><label>CPF</label><input class="input error" value="000.000.000-00"><div class="help err">CPF inválido</div></div>
+    <div class="field"><label>Estado</label>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:4px">
+        <div class="tog-row"><div class="toggle on"></div><span>Notificações</span></div>
+        <div class="tog-row"><div class="toggle"></div><span>Modo escuro</span></div>
+      </div>
+    </div>
+  </div>
+</div></body></html>

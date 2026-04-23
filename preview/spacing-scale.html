@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .scale{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
+  .step{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .bar{background:linear-gradient(180deg,#DE00FF,#7A03C4);border-radius:4px;width:28px;box-shadow:0 0 12px rgba(222,0,255,.35)}
+  .lbl{font:700 10px/1 var(--font-mono);color:var(--fg-muted)}
+  .lbl b{color:#fff;display:block;font-family:Inter;letter-spacing:.04em;margin-bottom:2px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Spacing Scale · 4-point</p>
+  <p class="sub">Multiples of 4. Figma padding of 10/42/62/68 maps to the 2–16 range; avoid values off the scale.</p>
+  <div class="scale">
+    <div class="step"><div class="bar" style="height:4px"></div><div class="lbl"><b>1</b>4px</div></div>
+    <div class="step"><div class="bar" style="height:8px"></div><div class="lbl"><b>2</b>8px</div></div>
+    <div class="step"><div class="bar" style="height:12px"></div><div class="lbl"><b>3</b>12</div></div>
+    <div class="step"><div class="bar" style="height:16px"></div><div class="lbl"><b>4</b>16</div></div>
+    <div class="step"><div class="bar" style="height:20px"></div><div class="lbl"><b>5</b>20</div></div>
+    <div class="step"><div class="bar" style="height:24px"></div><div class="lbl"><b>6</b>24</div></div>
+    <div class="step"><div class="bar" style="height:32px"></div><div class="lbl"><b>8</b>32</div></div>
+    <div class="step"><div class="bar" style="height:40px"></div><div class="lbl"><b>10</b>40</div></div>
+    <div class="step"><div class="bar" style="height:48px"></div><div class="lbl"><b>12</b>48</div></div>
+    <div class="step"><div class="bar" style="height:56px"></div><div class="lbl"><b>14</b>56</div></div>
+    <div class="step"><div class="bar" style="height:64px"></div><div class="lbl"><b>16</b>64</div></div>
+    <div class="step"><div class="bar" style="height:80px"></div><div class="lbl"><b>20</b>80</div></div>
+    <div class="step"><div class="bar" style="height:96px"></div><div class="lbl"><b>24</b>96</div></div>
+  </div>
+</div></body></html>

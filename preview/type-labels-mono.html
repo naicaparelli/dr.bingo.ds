@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+  .row{display:flex;align-items:baseline;gap:14px;padding:8px 0;border-top:1px solid rgba(243,230,250,.08)}
+  .row:first-of-type,.row:nth-of-type(2){border-top:0}
+  .meta{min-width:92px;color:var(--fg-muted);font:500 10.5px/1.2 var(--font-mono)}
+  .name{font:800 10.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-primary);display:block;margin-bottom:3px}
+  .mono-panel{background:rgba(0,0,0,.32);border:1px solid rgba(243,230,250,.08);border-radius:12px;padding:14px 16px;margin-top:4px}
+  .odds{font:700 14px/1 'JetBrains Mono',monospace;letter-spacing:.02em;color:#CCFF00}
+  .timer{font:700 14px/1 'JetBrains Mono',monospace;color:#fff}
+  .bal{font:700 14px/1 'JetBrains Mono',monospace;color:#FCEE21}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Labels & Mono</p>
+  <p class="sub">All-caps bold labels for chips, tabs and captions. Monospace for odds, timers and currency — tabular feel.</p>
+  <div class="grid">
+    <div>
+      <div class="row"><div class="meta"><span class="name">label-16</span>Inter 700 · 16</div>
+        <div style="font:700 16px/1 Inter;letter-spacing:.04em;text-transform:uppercase">DEPÓSITO</div></div>
+      <div class="row"><div class="meta"><span class="name">label-14</span>Inter 700 · 14</div>
+        <div style="font:700 14px/1 Inter;letter-spacing:.04em;text-transform:uppercase">FAVORITOS</div></div>
+      <div class="row"><div class="meta"><span class="name">label-12</span>Inter 700 · 12</div>
+        <div style="font:700 12px/1 Inter;letter-spacing:.04em;text-transform:uppercase">LIVE CASSINO</div></div>
+      <div class="row"><div class="meta"><span class="name">label-10</span>Inter 700 · 10</div>
+        <div style="font:700 10px/1 Inter;letter-spacing:.04em;text-transform:uppercase">HOT · NOVO</div></div>
+    </div>
+    <div class="mono-panel">
+      <div style="font:800 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:10px">mono-14 · JetBrains Mono 700 · 14</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="timer">⏱ 01:23:45</div>
+        <div class="odds">× 1,85 → R$ 92,50</div>
+        <div class="bal">R$ 321.434,20</div>
+      </div>
+    </div>
+  </div>
+</div></body></html>

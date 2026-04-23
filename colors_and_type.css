@@ -1,0 +1,286 @@
+/* ================================================================
+   Dr. Bingo Bet — Design System Foundations
+   Source: Figma "canvas.fig" + product screenshot
+   ================================================================ */
+
+/* ---------- Webfonts ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap");
+
+:root {
+  /* ============================================================
+     COLORS — Primary (neon / night-arcade)
+     Extracted from Figma + product screenshot
+     ============================================================ */
+
+  /* Brand violet scale — the DNA of the product */
+  --violet-50:  #F3E6FA;   /* rgb(243,230,250) — near-white text on deep bg */
+  --violet-100: #E8CEF5;
+  --violet-200: #C9A0E8;
+  --violet-300: #AB73DB;
+  --violet-400: #8F04E0;   /* rgb(143,4,224) — hot accent */
+  --violet-500: #AB00B9;   /* rgb(171,0,185) — magenta-violet */
+  --violet-600: #7A03C4;
+  --violet-700: #3B00CC;   /* rgb(59,0,204)  — deep electric blue-violet */
+  --violet-800: #261A2E;   /* rgb(38,26,46)  — app / card surface */
+  --violet-900: #0D051E;   /* rgb(13,5,30)   — deepest background */
+
+  /* Magenta / Pink — CTAs, highlights, "favoritos" */
+  --magenta-300: #FF66FF;  /* rgb(255,102,255) */
+  --magenta-400: #FB5AFF;  /* rgb(251,90,255) */
+  --magenta-500: #E619FF;  /* rgb(230,25,255) */
+  --magenta-600: #DE00FF;  /* rgb(222,0,255) */
+
+  /* Yellow / Gold — jackpot, "DEPOSITO", coin, prize accents */
+  --gold-300:   #FCEE21;   /* rgb(252,238,33) — primary yellow */
+  --gold-400:   #F7931E;   /* rgb(247,147,30) — orange companion */
+
+  /* Lime — win / success / "COLETAR" accents */
+  --lime-300:   #CCFF00;   /* rgb(204,255,0) */
+  --lime-400:   #C6FC02;   /* rgb(198,252,2) */
+  --lime-500:   #98E51A;   /* rgb(152,229,26) */
+  --lime-600:   #7CD829;   /* rgb(124,216,41) */
+
+  /* Green — confirmations, positive balance, online */
+  --green-400:  #2FC431;   /* rgb(47,196,49)  */
+  --green-500:  #0BBC32;   /* rgb(11,188,50)  */
+  --green-600:  #00BA33;   /* rgb(0,186,51)   */
+
+  /* ============================================================
+     NEUTRALS
+     Built as a coherent ramp around Figma's #261A2E + #F3E6FA
+     ============================================================ */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F3E6FA;  /* tinted violet white, from Figma */
+  --neutral-100: #E2D4EC;
+  --neutral-200: #C7B5D4;
+  --neutral-300: #9E8AAC;
+  --neutral-400: #7A6A87;
+  --neutral-500: #584C63;
+  --neutral-600: #3D3347;
+  --neutral-700: #2F2438;
+  --neutral-800: #261A2E;  /* canonical surface */
+  --neutral-900: #15091F;
+  --neutral-950: #0D051E;  /* canonical background */
+
+  /* ============================================================
+     SEMANTIC TOKENS
+     ============================================================ */
+  --bg-app:          var(--neutral-950);
+  --bg-surface:      var(--neutral-800);
+  --bg-elevated:     #32213D;
+  --bg-overlay:      rgba(13, 5, 30, 0.72);
+
+  --fg-primary:      var(--neutral-0);
+  --fg-secondary:    var(--neutral-50);
+  --fg-muted:        var(--neutral-300);
+  --fg-disabled:     var(--neutral-500);
+  --fg-on-accent:    var(--neutral-0);
+
+  --border-subtle:   rgba(243, 230, 250, 0.08);
+  --border-default:  rgba(243, 230, 250, 0.16);
+  --border-strong:   rgba(243, 230, 250, 0.32);
+
+  --accent-primary:      var(--magenta-500);
+  --accent-primary-hover:var(--magenta-400);
+  --accent-secondary:    var(--violet-500);
+  --accent-tertiary:     var(--gold-300);
+
+  /* States */
+  --success: var(--green-500);
+  --success-bg: rgba(11, 188, 50, 0.14);
+  --warning: var(--gold-400);
+  --warning-bg: rgba(247, 147, 30, 0.14);
+  --error:   #FF3355;
+  --error-bg: rgba(255, 51, 85, 0.14);
+  --info:    var(--violet-400);
+  --info-bg: rgba(143, 4, 224, 0.14);
+
+  /* ============================================================
+     GRADIENTS (styles present in Figma + harmonized additions)
+     ============================================================ */
+  --grad-cover:     linear-gradient(180deg, #AB00B9 0%, #3B00CC 100%);       /* Figma: cover hero */
+  --grad-violet:    linear-gradient(135deg, #3B00CC 0%, #AB00B9 100%);
+  --grad-magenta:   linear-gradient(135deg, #DE00FF 0%, #AB00B9 100%);
+  --grad-hot:       linear-gradient(135deg, #FF66FF 0%, #8F04E0 100%);
+  --grad-gold:      linear-gradient(135deg, #FCEE21 0%, #F7931E 100%);       /* "DEPOSITO" pill */
+  --grad-win:       linear-gradient(135deg, #CCFF00 0%, #00BA33 100%);       /* "COLETAR" */
+  --grad-night:     linear-gradient(180deg, #261A2E 0%, #0D051E 100%);       /* app background */
+  --grad-card-dim:  linear-gradient(180deg, rgba(38,26,46,0) 0%, rgba(13,5,30,0.85) 100%);
+
+  /* ============================================================
+     TYPOGRAPHY — raw tokens from Figma
+     Family: Inter (UI) + Luckiest Guy (display / wordmark)
+     All line-heights in Figma = 100% (tight display-style).
+     We raise body to 140% for readability.
+     ============================================================ */
+  --font-display: "Luckiest Guy", "Bangers", "Impact", system-ui, sans-serif;
+  --font-sans:    "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Weights used in Figma: 400, 500, 600, 700, 800, 900 */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-extra:    800;
+  --fw-black:    900;
+
+  /* Sizes (from Figma text styles) */
+  --fs-10: 10px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-24: 24px;
+  --fs-48: 48px;
+  --fs-60: 60px;
+
+  /* Line-height overrides for readability */
+  --lh-tight: 1;        /* Figma default — labels, display */
+  --lh-snug:  1.2;      /* Headings in context */
+  --lh-body:  1.5;      /* Paragraphs */
+
+  --ls-display: 0.02em;  /* Luckiest Guy is already open; small tracking */
+  --ls-label:   0.04em;  /* All-caps labels */
+
+  /* ============================================================
+     SPACING — 4-point scale
+     Inferred from Figma padding (10, 42, 62, 68) and component gaps.
+     ============================================================ */
+  --space-0:  0px;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ============================================================
+     RADIUS
+     Figma uses big, friendly radii — 56px on hero label, 999 on pills.
+     ============================================================ */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-3xl:  56px;    /* Figma: hero label radius */
+  --radius-pill: 9999px;
+
+  /* ============================================================
+     BORDER / STROKE
+     ============================================================ */
+  --stroke-hairline: 1px;
+  --stroke-regular:  1.5px;
+  --stroke-bold:     2px;
+  --stroke-chunky:   3px;
+
+  /* ============================================================
+     EFFECTS — shadow, glow, blur
+     Approximated from the product's neon vibe.
+     ============================================================ */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+  --shadow-xl: 0 24px 56px rgba(0,0,0,0.6);
+  --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.08);
+
+  --glow-magenta: 0 0 24px rgba(230, 25, 255, 0.55), 0 0 48px rgba(230, 25, 255, 0.25);
+  --glow-violet:  0 0 24px rgba(143, 4, 224, 0.55),  0 0 48px rgba(143, 4, 224, 0.25);
+  --glow-gold:    0 0 24px rgba(252, 238, 33, 0.55), 0 0 48px rgba(247, 147, 30, 0.25);
+  --glow-lime:    0 0 24px rgba(204, 255, 0, 0.55),  0 0 48px rgba(11, 188, 50, 0.25);
+  --glow-soft:    0 0 20px rgba(171, 0, 185, 0.35);
+
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 29px;         /* Figma: hero label backdrop-filter */
+  --blur-xl: 48px;
+
+  /* ============================================================
+     OPACITY SCALE
+     ============================================================ */
+  --op-disabled: 0.4;
+  --op-muted:    0.6;
+  --op-hover:    0.85;
+  --op-overlay:  0.72;     /* matches --bg-overlay */
+  --op-glow:     0.55;
+
+  /* ============================================================
+     Z-INDEX
+     ============================================================ */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   2000;
+  --z-toast:   3000;
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:     cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-pop:    cubic-bezier(0.34, 1.56, 0.64, 1);    /* bouncy for CTAs */
+  --dur-fast:    120ms;
+  --dur-base:    200ms;
+  --dur-slow:    360ms;
+}
+
+/* ================================================================
+   SEMANTIC / COMPONENT-LEVEL STYLES
+   Element selectors + class mirrors for the Figma text styles.
+   ================================================================ */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-14);
+  line-height: var(--lh-body);
+  color: var(--fg-primary);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display — Luckiest Guy, used for wordmark & big festive numbers */
+.t-display-60, .display-60 {
+  font-family: var(--font-display);
+  font-size: var(--fs-60);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  font-weight: var(--fw-regular);
+}
+.t-display-48, .display-48 {
+  font-family: var(--font-display);
+  font-size: var(--fs-48);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  font-weight: var(--fw-regular);
+}
+
+/* Headings — Inter Bold */
+h1, .t-h1, .heading-24 { font: var(--fw-bold) var(--fs-24)/var(--lh-snug) var(--font-sans); }
+h2, .t-h2, .heading-20 { font: var(--fw-bold) var(--fs-20)/var(--lh-snug) var(--font-sans); }
+h3, .t-h3, .heading-18 { font: var(--fw-bold) var(--fs-18)/var(--lh-snug) var(--font-sans); }
+
+/* Body — Inter Regular/Medium */
+.t-body-16, .body-16 { font: var(--fw-medium)  var(--fs-16)/var(--lh-body) var(--font-sans); }
+.t-body-14, .body-14 { font: var(--fw-regular) var(--fs-14)/var(--lh-body) var(--font-sans); }
+.t-body-12, .body-12 { font: var(--fw-regular) var(--fs-12)/var(--lh-body) var(--font-sans); }
+
+/* Labels — Inter Bold, all-caps recommended */
+.t-label-16, .label-16 { font: var(--fw-bold) var(--fs-16)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-label); text-transform: uppercase; }
+.t-label-14, .label-14 { font: var(--fw-bold) var(--fs-14)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-label); text-transform: uppercase; }
+.t-label-12, .label-12 { font: var(--fw-bold) var(--fs-12)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-label); text-transform: uppercase; }
+.t-label-10, .label-10 { font: var(--fw-bold) var(--fs-10)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-label); text-transform: uppercase; }
+
+/* Mono — used for timers, odds, currency */
+.t-mono-14, .mono-14  { font: var(--fw-bold) var(--fs-14)/var(--lh-tight) var(--font-mono); letter-spacing: 0.02em; }
+
+code, kbd, samp { font-family: var(--font-mono); }

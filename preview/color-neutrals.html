@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:22px 26px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .ramp{display:grid;grid-template-columns:repeat(11,1fr);gap:6px}
+  .swatch{aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+  .swatch .step{position:absolute;left:6px;top:6px;font:800 9px/1 var(--font-sans);letter-spacing:.04em}
+  .swatch .hex{position:absolute;left:6px;bottom:6px;right:6px;font:500 8.5px/1 var(--font-mono);white-space:nowrap;overflow:hidden}
+  .swatch.lt .step, .swatch.lt .hex {color:rgba(0,0,0,.82)}
+  .swatch.dk .step, .swatch.dk .hex {color:rgba(255,255,255,.9)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 14px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Neutrals — Night Arcade</p>
+  <p class="sub">Warm, violet-tinged neutrals. 800 is the canonical surface; 950 the canonical app background.</p>
+  <div class="ramp">
+    <div class="swatch lt" style="background:#FFFFFF"><span class="step">0</span><span class="hex">FFFFFF</span></div>
+    <div class="swatch lt" style="background:#F3E6FA"><span class="step">50</span><span class="hex">F3E6FA</span></div>
+    <div class="swatch lt" style="background:#E2D4EC"><span class="step">100</span><span class="hex">E2D4EC</span></div>
+    <div class="swatch lt" style="background:#C7B5D4"><span class="step">200</span><span class="hex">C7B5D4</span></div>
+    <div class="swatch dk" style="background:#9E8AAC"><span class="step">300</span><span class="hex">9E8AAC</span></div>
+    <div class="swatch dk" style="background:#7A6A87"><span class="step">400</span><span class="hex">7A6A87</span></div>
+    <div class="swatch dk" style="background:#584C63"><span class="step">500</span><span class="hex">584C63</span></div>
+    <div class="swatch dk" style="background:#3D3347"><span class="step">600</span><span class="hex">3D3347</span></div>
+    <div class="swatch dk" style="background:#2F2438"><span class="step">700</span><span class="hex">2F2438</span></div>
+    <div class="swatch dk" style="background:#261A2E"><span class="step">800</span><span class="hex">261A2E</span></div>
+    <div class="swatch dk" style="background:#0D051E"><span class="step">950</span><span class="hex">0D051E</span></div>
+  </div>
+</div></body></html>

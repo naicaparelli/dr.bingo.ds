@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:22px 26px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .ramp{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+  .swatch{aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+  .swatch .step{position:absolute;left:6px;top:6px;font:800 9px/1 var(--font-sans);color:rgba(255,255,255,.9);letter-spacing:.04em}
+  .swatch .hex{position:absolute;left:6px;bottom:6px;right:6px;font:500 8.5px/1 var(--font-mono);color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .swatch.lt .step, .swatch.lt .hex {color:rgba(0,0,0,.85)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-primary);margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 14px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Violet — Brand Primary</p>
+  <p class="sub">The DNA of Dr. Bingo Bet. Use for surfaces, backgrounds, deep accents, and the wordmark's inner glow.</p>
+  <div class="ramp">
+    <div class="swatch lt" style="background:#F3E6FA"><span class="step">50</span><span class="hex">F3E6FA</span></div>
+    <div class="swatch lt" style="background:#E8CEF5"><span class="step">100</span><span class="hex">E8CEF5</span></div>
+    <div class="swatch lt" style="background:#C9A0E8"><span class="step">200</span><span class="hex">C9A0E8</span></div>
+    <div class="swatch" style="background:#AB73DB"><span class="step">300</span><span class="hex">AB73DB</span></div>
+    <div class="swatch" style="background:#8F04E0"><span class="step">400</span><span class="hex">8F04E0</span></div>
+    <div class="swatch" style="background:#AB00B9"><span class="step">500</span><span class="hex">AB00B9</span></div>
+    <div class="swatch" style="background:#7A03C4"><span class="step">600</span><span class="hex">7A03C4</span></div>
+    <div class="swatch" style="background:#3B00CC"><span class="step">700</span><span class="hex">3B00CC</span></div>
+    <div class="swatch" style="background:#261A2E"><span class="step">800</span><span class="hex">261A2E</span></div>
+    <div class="swatch" style="background:#0D051E"><span class="step">900</span><span class="hex">0D051E</span></div>
+  </div>
+</div></body></html>

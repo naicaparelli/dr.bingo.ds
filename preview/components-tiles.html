@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .tile{aspect-ratio:1;border-radius:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1)}
+  .tile:hover{transform:translateY(-2px)}
+  .tile .img{position:absolute;inset:0}
+  .tile .dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,26,46,0) 40%,rgba(13,5,30,.92) 100%)}
+  .tile .name{position:absolute;left:10px;right:10px;bottom:8px;color:#fff;font:800 11px/1.1 Inter;letter-spacing:.04em}
+  .tile .badge{position:absolute;left:8px;top:8px;padding:4px 8px;border-radius:9999px;font:700 9px/1 Inter;letter-spacing:.08em;text-transform:uppercase}
+  .hot{background:linear-gradient(135deg,#FF66FF,#8F04E0);color:#fff}
+  .new{background:#CCFF00;color:#0d2600}
+  .live{background:#FF3355;color:#fff}
+  .jack{background:linear-gradient(135deg,#FCEE21,#F7931E);color:#261A2E}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Game Tiles</p>
+  <p class="sub">Square covers with a dim protection gradient so titles stay legible. A single corner tag marks status. Hover lifts 2px.</p>
+  <div class="grid">
+    <div class="tile"><div class="img" style="background:linear-gradient(135deg,#3B00CC,#AB00B9)"></div><div class="dim"></div><span class="badge hot">🔥 Hot</span><span class="name">Cosmic Cash</span></div>
+    <div class="tile"><div class="img" style="background:linear-gradient(135deg,#00BA33,#0BBC32)"></div><div class="dim"></div><span class="badge new">Novo</span><span class="name">Diamond Strike</span></div>
+    <div class="tile"><div class="img" style="background:linear-gradient(135deg,#E619FF,#FF66FF)"></div><div class="dim"></div><span class="badge live">● Live</span><span class="name">Sweet Bonanza</span></div>
+    <div class="tile"><div class="img" style="background:linear-gradient(135deg,#F7931E,#FCEE21)"></div><div class="dim"></div><span class="badge jack">★ Jackpot</span><span class="name">Olympus Wins</span></div>
+  </div>
+</div></body></html>

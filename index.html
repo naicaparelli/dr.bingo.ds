@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dr. Bingo Bet · Design System</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+<style>
+  .material-symbols-rounded{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;font-size:24px}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg-app);color:var(--fg-primary);font-family:var(--font-sans);scroll-behavior:smooth}
+  ::selection{background:#E619FF;color:#fff}
+
+  /* ────────── LAYOUT ────────── */
+  .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+
+  /* ────────── SIDEBAR ────────── */
+  aside{
+    position:sticky;top:0;height:100vh;overflow-y:auto;
+    background:linear-gradient(180deg,#15091F,#0D051E);
+    border-right:1px solid var(--border-subtle);
+    padding:28px 22px;
+  }
+  .brand{display:flex;flex-direction:column;gap:4px;margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid var(--border-subtle)}
+  .brand .mark{font-family:'Luckiest Guy',cursive;font-size:28px;line-height:1;letter-spacing:.02em;
+    background:linear-gradient(180deg,#E619FF,#7A03C4);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 28px rgba(222,0,255,.25)}
+  .brand .mark b{background:linear-gradient(135deg,#FCEE21,#F7931E);-webkit-background-clip:text;background-clip:text;color:transparent;font:800 11px/1 Inter;letter-spacing:.08em;vertical-align:8px;margin-left:4px}
+  .brand .sub{font:500 10px/1 Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted)}
+  nav h4{font:800 10px/1 Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);margin:20px 0 8px}
+  nav a{display:block;padding:8px 12px;border-radius:10px;color:var(--fg-secondary);text-decoration:none;font:500 13px/1 Inter;margin-bottom:2px;transition:all .15s}
+  nav a:hover{background:rgba(243,230,250,.06);color:#fff}
+  nav a.active{background:linear-gradient(135deg,rgba(222,0,255,.2),rgba(59,0,204,.2));color:#fff;box-shadow:inset 0 0 0 1px rgba(230,25,255,.35)}
+  nav a .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:8px;opacity:.4;vertical-align:2px}
+
+  /* ────────── MAIN ────────── */
+  main{padding:56px 72px 120px;max-width:1180px}
+  .hero{margin-bottom:72px;position:relative}
+  .hero::before{content:"";position:absolute;top:-40px;left:-40px;width:400px;height:280px;background:radial-gradient(circle,rgba(222,0,255,.25),transparent 60%);pointer-events:none;z-index:0}
+  .hero .eyebrow{font:800 11px/1 Inter;letter-spacing:.14em;text-transform:uppercase;color:#FCEE21;margin-bottom:14px;position:relative}
+  .hero h1{font-family:'Luckiest Guy',cursive;font-size:88px;line-height:.95;letter-spacing:.02em;margin:0 0 18px;color:#fff;position:relative;text-shadow:0 4px 32px rgba(222,0,255,.5)}
+  .hero p{font:500 17px/1.5 Inter;color:var(--fg-secondary);max-width:640px;margin:0;position:relative}
+  .hero .chips{display:flex;gap:8px;margin-top:22px;position:relative}
+  .hero .chips span{font:700 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:rgba(243,230,250,.08);border:1px solid var(--border-default);color:var(--fg-secondary)}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;padding-bottom:14px;border-bottom:1px solid var(--border-subtle)}
+  .sec-head h2{font:900 13px/1 Inter;letter-spacing:.14em;text-transform:uppercase;margin:0;color:#fff}
+  .sec-head .idx{font:500 11px/1 'JetBrains Mono',monospace;color:var(--fg-muted)}
+  .sec-intro{font:400 14px/1.5 Inter;color:var(--fg-muted);max-width:680px;margin:14px 0 28px}
+
+  .grid{display:grid;gap:18px}
+  .g-2{grid-template-columns:repeat(2,1fr)}
+  .g-3{grid-template-columns:repeat(3,1fr)}
+  .g-4{grid-template-columns:repeat(4,1fr)}
+
+  .panel{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:20px;padding:22px 24px}
+  .panel h3{font:800 11px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-secondary);margin:0 0 14px}
+
+  /* ────────── COLORS ────────── */
+  .ramp{display:grid;grid-template-columns:repeat(10,1fr);gap:8px}
+  .swatch{aspect-ratio:1;border-radius:12px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1)}
+  .swatch:hover{transform:translateY(-3px)}
+  .swatch .step{position:absolute;left:8px;top:7px;font:800 10px/1 Inter;letter-spacing:.04em}
+  .swatch .hex{position:absolute;left:8px;bottom:7px;right:8px;font:500 9.5px/1 var(--font-mono);white-space:nowrap;overflow:hidden}
+  .swatch.lt{color:#15091F}
+  .swatch.dk{color:#fff}
+  .swatch .copied{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);font:800 10px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#CCFF00;opacity:0;transition:opacity .2s}
+  .swatch.copied-flash .copied{opacity:1}
+
+  .sem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .sem{border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;border:1px solid}
+  .sem .dot{width:14px;height:14px;border-radius:50%}
+  .sem .name{font:800 11px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+  .sem .hex{font:500 10.5px/1 var(--font-mono);opacity:.78;color:#fff}
+  .sem .msg{font:500 13px/1.3 Inter;color:#fff;margin-top:4px}
+
+  /* gradients */
+  .grad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grad{height:128px;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;color:#fff;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:transform .2s}
+  .grad:hover{transform:translateY(-3px)}
+  .grad .name{font:800 11px/1 Inter;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .grad .use{font:500 11px/1.3 Inter;opacity:.9;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .grad .css{font:500 10px/1 var(--font-mono);opacity:.75}
+
+  /* typography */
+  .spec{display:flex;align-items:baseline;gap:18px;padding:14px 0;border-top:1px solid var(--border-subtle)}
+  .spec:first-of-type{border-top:0}
+  .spec .meta{min-width:170px;color:var(--fg-muted);font:500 11px/1.3 var(--font-mono)}
+  .spec .meta b{font:800 11px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:#fff;display:block;margin-bottom:3px}
+
+  /* spacing bars */
+  .scale-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+  .scale-row .step{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .scale-row .bar{background:linear-gradient(180deg,#DE00FF,#7A03C4);border-radius:4px;width:28px;box-shadow:0 0 14px rgba(222,0,255,.35)}
+  .scale-row .lbl{font:700 10px/1 var(--font-mono);color:var(--fg-muted);text-align:center}
+  .scale-row .lbl b{color:#fff;display:block;font-family:Inter;letter-spacing:.04em;margin-bottom:2px}
+
+  /* radius */
+  .rad-row{display:grid;grid-template-columns:repeat(8,1fr);gap:14px}
+  .rad-row .r{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .rad-row .box{background:linear-gradient(135deg,#3B00CC,#AB00B9);border:1px solid rgba(255,255,255,.1);width:64px;height:64px}
+
+  /* effects */
+  .fx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .fx{background:#15091F;border-radius:14px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid var(--border-subtle)}
+  .fx .circle{width:52px;height:52px;border-radius:50%}
+  .fx .sq{width:84px;height:60px;background:linear-gradient(180deg,#2F2438,#15091F);border-radius:12px;border:1px solid rgba(255,255,255,.05)}
+  .fx .nm{font:800 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+  .fx .hn{font:500 10px/1.3 var(--font-mono);color:var(--fg-muted);text-align:center}
+
+  /* components */
+  .row-wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{border:0;cursor:pointer;font:700 13px/1 Inter;letter-spacing:.04em;text-transform:uppercase;padding:12px 22px;border-radius:9999px;color:#fff;transition:all .2s cubic-bezier(.22,1,.36,1);user-select:none}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:active{transform:translateY(0) scale(.97);transition-duration:80ms}
+  .btn.primary{background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 20px rgba(230,25,255,.45),0 6px 16px rgba(0,0,0,.35)}
+  .btn.primary:hover{box-shadow:0 0 32px rgba(230,25,255,.65),0 8px 20px rgba(0,0,0,.45)}
+  .btn.deposit{background:linear-gradient(135deg,#FCEE21,#F7931E);color:#261A2E;box-shadow:0 0 20px rgba(252,238,33,.45),0 6px 16px rgba(0,0,0,.35)}
+  .btn.win{background:linear-gradient(135deg,#CCFF00,#00BA33);color:#0d2600;box-shadow:0 0 20px rgba(204,255,0,.45),0 6px 16px rgba(0,0,0,.35)}
+  .btn.ghost{background:transparent;border:1.5px solid rgba(243,230,250,.32)}
+  .btn.ghost:hover{border-color:#E619FF;color:#E619FF;box-shadow:0 0 22px rgba(230,25,255,.35)}
+  .btn.soft{background:rgba(230,25,255,.14);color:#FB5AFF;border:1px solid rgba(230,25,255,.3)}
+  .btn.disabled{opacity:.4;cursor:not-allowed;box-shadow:none;pointer-events:none}
+  .btn-sm{padding:8px 14px;font-size:11px}
+  .icon-btn{width:44px;height:44px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(243,230,250,.08);color:#fff;border:0;cursor:pointer;transition:all .2s}
+  .icon-btn:hover{background:rgba(230,25,255,.18);color:#FB5AFF;box-shadow:0 0 18px rgba(230,25,255,.3)}
+
+  /* tags & chips */
+  .tag{border-radius:9999px;padding:6px 12px;font:700 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;gap:6px;align-items:center}
+  .tag.hot{background:linear-gradient(135deg,#FF66FF,#8F04E0);color:#fff;box-shadow:0 0 14px rgba(255,102,255,.4)}
+  .tag.new{background:#CCFF00;color:#0d2600}
+  .tag.live{background:#FF3355;color:#fff}
+  .tag.vip{background:linear-gradient(135deg,#FCEE21,#F7931E);color:#261A2E}
+  .tag.def{background:rgba(243,230,250,.1);color:#F3E6FA;border:1px solid rgba(243,230,250,.2)}
+  .tag.succ{background:rgba(11,188,50,.16);color:#7CD829;border:1px solid rgba(11,188,50,.4)}
+  .tag.err{background:rgba(255,51,85,.16);color:#FF8899;border:1px solid rgba(255,51,85,.4)}
+  .live::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block;animation:pulse 1.6s ease-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+  .chip{border-radius:9999px;padding:10px 18px;font:700 13px/1 Inter;background:rgba(243,230,250,.08);color:#fff;border:1px solid rgba(243,230,250,.12);display:inline-flex;gap:8px;align-items:center;cursor:pointer;transition:all .2s}
+  .chip:hover{background:rgba(243,230,250,.14)}
+  .chip.active{background:linear-gradient(135deg,#DE00FF,#AB00B9);border-color:transparent;box-shadow:0 0 20px rgba(230,25,255,.45)}
+
+  /* inputs */
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font:700 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted)}
+  .input{background:#15091F;color:#fff;border:1.5px solid rgba(243,230,250,.14);border-radius:12px;padding:12px 14px;font:500 14px/1 Inter;outline:none;transition:all .15s;width:100%}
+  .input:focus{border-color:#E619FF;box-shadow:0 0 0 3px rgba(230,25,255,.2),0 0 18px rgba(230,25,255,.35)}
+  .input.error{border-color:#FF3355;box-shadow:0 0 0 3px rgba(255,51,85,.2)}
+  .help{font:500 11px/1.2 Inter;color:var(--fg-muted)}
+  .help.err{color:#FF8899}
+
+  .toggle{width:52px;height:30px;background:rgba(243,230,250,.14);border-radius:999px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+  .toggle.on{background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 14px rgba(230,25,255,.45)}
+  .toggle::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s cubic-bezier(.34,1.56,.64,1)}
+  .toggle.on::after{left:25px}
+  .tog-row{display:flex;align-items:center;gap:12px;padding:8px 0}
+  .tog-row span{font:500 13px/1 Inter;color:#fff}
+
+  /* tiles */
+  .tile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tile{aspect-ratio:1;border-radius:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1)}
+  .tile:hover{transform:translateY(-3px)}
+  .tile:hover .play{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .tile .img{position:absolute;inset:0}
+  .tile .dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,26,46,0) 40%,rgba(13,5,30,.92) 100%)}
+  .tile .name{position:absolute;left:10px;right:10px;bottom:8px;color:#fff;font:800 11px/1.1 Inter;letter-spacing:.04em}
+  .tile .badge{position:absolute;left:8px;top:8px;padding:4px 8px;border-radius:9999px;font:700 9px/1 Inter;letter-spacing:.08em;text-transform:uppercase}
+  .tile .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.7);width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 24px rgba(230,25,255,.6);display:flex;align-items:center;justify-content:center;color:#fff;opacity:0;transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+
+  /* topbar + tabs */
+  .topbar{background:#15091F;border:1px solid var(--border-subtle);border-radius:9999px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .topbar .left, .topbar .right{display:flex;align-items:center;gap:10px}
+  .topbar .mark{font-family:'Luckiest Guy',cursive;font-size:18px;letter-spacing:.04em;color:#fff;margin-left:6px}
+  .topbar .mark b{background:linear-gradient(135deg,#FCEE21,#F7931E);color:#261A2E;padding:2px 6px;border-radius:6px;margin-left:4px;font:800 9px/1 Inter;letter-spacing:.1em;vertical-align:2px}
+  .timer{background:rgba(243,230,250,.08);border-radius:9999px;padding:6px 12px;font:700 12px/1 'JetBrains Mono',monospace;color:#fff;display:inline-flex;gap:6px;align-items:center}
+  .bal{color:#fff;font:700 13px/1 'JetBrains Mono',monospace;margin-right:8px}
+  .dep-pill{background:linear-gradient(135deg,#CCFF00,#00BA33);color:#0d2600;border-radius:9999px;padding:7px 14px;font:800 11px/1 Inter;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 0 14px rgba(204,255,0,.35);cursor:pointer}
+  .ava{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#DE00FF,#AB00B9);display:flex;align-items:center;justify-content:center;color:#fff;font:800 11px/1 Inter;cursor:pointer}
+  .tabbar{background:linear-gradient(180deg,rgba(38,26,46,.6),rgba(13,5,30,.9));border-radius:9999px;padding:8px;display:flex;gap:4px;border:1px solid var(--border-subtle);flex-wrap:wrap}
+  .tab{padding:10px 18px;border-radius:9999px;font:800 11px/1 Inter;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted);cursor:pointer;transition:all .2s}
+  .tab:hover{color:#fff}
+  .tab.active{background:linear-gradient(135deg,#DE00FF,#AB00B9);color:#fff;box-shadow:0 0 18px rgba(230,25,255,.45)}
+
+  /* hero banner */
+  .hero-banner{height:180px;border-radius:22px;position:relative;overflow:hidden;background:linear-gradient(135deg,#AB00B9 0%,#3B00CC 100%);padding:24px 28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 32px rgba(171,0,185,.35)}
+  .hero-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(252,238,33,.28),transparent 50%),radial-gradient(circle at 20% 80%,rgba(230,25,255,.4),transparent 55%);mix-blend-mode:screen}
+  .hero-banner .kick{font:700 11px/1 Inter;letter-spacing:.14em;text-transform:uppercase;color:#FCEE21;position:relative;text-shadow:0 2px 12px rgba(252,238,33,.5)}
+  .hero-banner .head{font-family:'Luckiest Guy',cursive;font-size:48px;line-height:1;color:#fff;letter-spacing:.02em;text-shadow:0 4px 22px rgba(222,0,255,.6);position:relative;margin-top:8px}
+  .hero-banner .row{display:flex;align-items:end;justify-content:space-between;position:relative}
+
+  /* icons */
+  .ico-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:10px}
+  .ico{aspect-ratio:1;background:rgba(243,230,250,.06);border:1px solid var(--border-subtle);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .2s}
+  .ico:hover{background:rgba(230,25,255,.14);border-color:rgba(230,25,255,.4);box-shadow:0 0 18px rgba(230,25,255,.25)}
+  .ico:hover svg{color:#FB5AFF}
+  .ico svg{width:22px;height:22px;color:#F3E6FA;transition:color .2s}
+  .ico .material-symbols-rounded{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;font-size:26px;color:#F3E6FA;transition:all .2s}
+  .ico:hover .material-symbols-rounded{color:#FB5AFF;font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24}
+  .ico .n{font:600 9px/1 'JetBrains Mono',monospace;color:var(--fg-muted)}
+
+  /* coming soon */
+  .coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .coming{background:linear-gradient(180deg,rgba(38,26,46,.65),rgba(13,5,30,.65));border:1px dashed rgba(230,25,255,.28);border-radius:18px;padding:30px 20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;position:relative;overflow:hidden;transition:all .25s}
+  .coming::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(230,25,255,.12),transparent 60%);pointer-events:none}
+  .coming:hover{border-color:rgba(230,25,255,.6);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 18px rgba(230,25,255,.2)}
+  .coming .material-symbols-rounded{font-size:36px;color:#FB5AFF;text-shadow:0 0 18px rgba(230,25,255,.5)}
+  .coming .cn{font:800 13px/1 Inter;letter-spacing:.04em;color:#fff}
+  .coming .cb{font:700 10px/1 Inter;letter-spacing:.14em;text-transform:uppercase;color:#FCEE21;padding:5px 12px;border-radius:9999px;background:rgba(252,238,33,.12);border:1px solid rgba(252,238,33,.35)}
+
+  /* logo panel */
+  .logo-panel{background:linear-gradient(180deg,#261A2E,#15091F);border-radius:20px;padding:36px 32px;display:flex;align-items:center;gap:32px;border:1px solid var(--border-subtle);position:relative;overflow:hidden}
+  .logo-panel::before{content:"";position:absolute;left:10%;top:50%;width:260px;height:260px;transform:translateY(-50%);background:radial-gradient(circle,rgba(222,0,255,.35),transparent 60%);pointer-events:none}
+  .big-mark{font-family:'Luckiest Guy',cursive;font-size:72px;line-height:1;letter-spacing:.02em;background:linear-gradient(180deg,#E619FF,#3B00CC);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px rgba(222,0,255,.3);position:relative}
+  .big-mark b{background:linear-gradient(135deg,#FCEE21,#F7931E);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:22px;letter-spacing:.06em;vertical-align:22px;margin-left:6px;font-family:Inter;font-weight:800}
+  .logo-panel .info h3{margin:0 0 6px;color:#fff;font:800 13px/1 Inter;letter-spacing:.1em;text-transform:uppercase}
+  .logo-panel .info p{margin:0;font:400 13px/1.5 Inter;color:var(--fg-secondary);max-width:420px}
+
+  /* tokens rule panel */
+  .rules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .rule{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));border:1px solid var(--border-subtle);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .rule .num{font-family:'Luckiest Guy',cursive;font-size:28px;line-height:1;color:#E619FF;text-shadow:0 0 16px rgba(230,25,255,.5);flex-shrink:0}
+  .rule p{margin:0;font:500 13px/1.5 Inter;color:var(--fg-secondary)}
+  .rule p b{color:#fff;font-weight:700}
+
+  /* toast */
+  #toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#15091F;border:1px solid rgba(230,25,255,.5);color:#fff;padding:12px 20px;border-radius:999px;font:700 12px/1 Inter;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 0 24px rgba(230,25,255,.4),0 8px 24px rgba(0,0,0,.5);opacity:0;transition:all .3s cubic-bezier(.22,1,.36,1);pointer-events:none;z-index:1000}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #toast b{color:#CCFF00;margin-left:6px;font-family:'JetBrains Mono',monospace}
+
+  /* scrollbar */
+  aside::-webkit-scrollbar{width:6px}
+  aside::-webkit-scrollbar-track{background:transparent}
+  aside::-webkit-scrollbar-thumb{background:rgba(230,25,255,.3);border-radius:999px}
+
+  @media (max-width: 1024px){
+    .app{grid-template-columns:1fr}
+    aside{position:relative;height:auto}
+    main{padding:32px 24px 80px}
+    .hero h1{font-size:60px}
+    .g-3,.g-4,.tile-grid,.ico-grid{grid-template-columns:repeat(2,1fr)}
+    .ramp{grid-template-columns:repeat(5,1fr)}
+    .rad-row{grid-template-columns:repeat(4,1fr)}
+    .sem-grid,.fx-grid,.grad-grid,.rules{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside>
+    <div class="brand">
+      <span class="mark">Dr. BINGO<b>BET</b></span>
+      <span class="sub">Design System · v1.0</span>
+    </div>
+    <nav id="nav">
+      <h4>Foundation</h4>
+      <a href="#intro"><span class="dot"></span>Overview</a>
+      <a href="#brand"><span class="dot"></span>Brand</a>
+      <a href="#colors"><span class="dot"></span>Colors</a>
+      <a href="#gradients"><span class="dot"></span>Gradients</a>
+      <a href="#typography"><span class="dot"></span>Typography</a>
+      <a href="#spacing"><span class="dot"></span>Spacing & Radius</a>
+      <a href="#effects"><span class="dot"></span>Effects</a>
+      <h4>Components</h4>
+      <a href="#icons"><span class="dot"></span>Iconography</a>
+      <h4>Rules</h4>
+      <a href="#rules"><span class="dot"></span>Usage Rules</a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════ MAIN ═══════════ -->
+  <main>
+
+    <!-- HERO -->
+    <header class="hero" id="intro">
+      <div class="eyebrow">Foundation · Tokens · Components</div>
+      <h1>Dr. Bingo Bet<br>Design System</h1>
+      <p>Um sistema visual noturno, festivo e eletrizante — roxo profundo, magenta neon e ouro. Tudo pronto para montar telas, campanhas e promoções com consistência.</p>
+      <div class="chips">
+        <span>Dark-first</span><span>Neon Glow</span><span>Pills &gt; Squares</span><span>PT-BR</span>
+      </div>
+    </header>
+
+    <!-- BRAND -->
+    <section id="brand">
+      <div class="sec-head"><h2>Brand</h2><span class="idx">01</span></div>
+      <p class="sec-intro">O wordmark combina "Dr. BINGO" em Luckiest Guy com o selo "BET" em gradiente dourado. Mínimo clearspace = altura do B. Nunca usar sobre fundo claro.</p>
+      <div class="logo-panel">
+        <div class="big-mark">Dr. BINGO<b>BET</b></div>
+        <div class="info">
+          <h3>Wordmark primário</h3>
+          <p>Luckiest Guy preenchida com gradiente violeta → magenta, ancorada pelo selo dourado. Para superfícies muito ocupadas, adicione um halo violeta 29px de blur atrás do logo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section id="colors">
+      <div class="sec-head"><h2>Colors</h2><span class="idx">02</span></div>
+      <p class="sec-intro">Clique em qualquer swatch para copiar o HEX. A espinha violeta carrega 90% da UI; os acentos disparam pontuais — magenta = ação, ouro = dinheiro, lima = vitória.</p>
+
+      <div class="panel" style="margin-bottom:18px">
+        <h3>Violet · Primary</h3>
+        <div class="ramp" data-copy>
+          <div class="swatch lt" style="background:#F3E6FA" data-hex="#F3E6FA"><span class="step">50</span><span class="hex">F3E6FA</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch lt" style="background:#E8CEF5" data-hex="#E8CEF5"><span class="step">100</span><span class="hex">E8CEF5</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch lt" style="background:#C9A0E8" data-hex="#C9A0E8"><span class="step">200</span><span class="hex">C9A0E8</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#AB73DB" data-hex="#AB73DB"><span class="step">300</span><span class="hex">AB73DB</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#8F04E0" data-hex="#8F04E0"><span class="step">400</span><span class="hex">8F04E0</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#AB00B9" data-hex="#AB00B9"><span class="step">500</span><span class="hex">AB00B9</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#7A03C4" data-hex="#7A03C4"><span class="step">600</span><span class="hex">7A03C4</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#3B00CC" data-hex="#3B00CC"><span class="step">700</span><span class="hex">3B00CC</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#261A2E" data-hex="#261A2E"><span class="step">800</span><span class="hex">261A2E</span><span class="copied">✓ copiado</span></div>
+          <div class="swatch dk" style="background:#0D051E" data-hex="#0D051E"><span class="step">900</span><span class="hex">0D051E</span><span class="copied">✓ copiado</span></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom:18px">
+        <h3>Neutrals</h3>
+        <div class="ramp" data-copy style="grid-template-columns:repeat(11,1fr)">
+          <div class="swatch lt" style="background:#FFFFFF" data-hex="#FFFFFF"><span class="step">0</span><span class="hex">FFFFFF</span><span class="copied">✓</span></div>
+          <div class="swatch lt" style="background:#F3E6FA" data-hex="#F3E6FA"><span class="step">50</span><span class="hex">F3E6FA</span><span class="copied">✓</span></div>
+          <div class="swatch lt" style="background:#E2D4EC" data-hex="#E2D4EC"><span class="step">100</span><span class="hex">E2D4EC</span><span class="copied">✓</span></div>
+          <div class="swatch lt" style="background:#C7B5D4" data-hex="#C7B5D4"><span class="step">200</span><span class="hex">C7B5D4</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#9E8AAC" data-hex="#9E8AAC"><span class="step">300</span><span class="hex">9E8AAC</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#7A6A87" data-hex="#7A6A87"><span class="step">400</span><span class="hex">7A6A87</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#584C63" data-hex="#584C63"><span class="step">500</span><span class="hex">584C63</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#3D3347" data-hex="#3D3347"><span class="step">600</span><span class="hex">3D3347</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#2F2438" data-hex="#2F2438"><span class="step">700</span><span class="hex">2F2438</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#261A2E" data-hex="#261A2E"><span class="step">800</span><span class="hex">261A2E</span><span class="copied">✓</span></div>
+          <div class="swatch dk" style="background:#0D051E" data-hex="#0D051E"><span class="step">950</span><span class="hex">0D051E</span><span class="copied">✓</span></div>
+        </div>
+      </div>
+
+      <div class="grid g-2" style="margin-bottom:18px">
+        <div class="panel">
+          <h3>Magenta · Primary CTA</h3>
+          <div class="ramp" data-copy style="grid-template-columns:repeat(4,1fr)">
+            <div class="swatch dk" style="background:#FF66FF" data-hex="#FF66FF"><span class="step">300</span><span class="hex">FF66FF</span><span class="copied">✓</span></div>
+            <div class="swatch dk" style="background:#FB5AFF" data-hex="#FB5AFF"><span class="step">400</span><span class="hex">FB5AFF</span><span class="copied">✓</span></div>
+            <div class="swatch dk" style="background:#E619FF" data-hex="#E619FF"><span class="step">500</span><span class="hex">E619FF</span><span class="copied">✓</span></div>
+            <div class="swatch dk" style="background:#DE00FF" data-hex="#DE00FF"><span class="step">600</span><span class="hex">DE00FF</span><span class="copied">✓</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Gold · Deposit / Jackpot</h3>
+          <div class="ramp" data-copy style="grid-template-columns:repeat(4,1fr)">
+            <div class="swatch lt" style="background:#FFD84D" data-hex="#FFD84D"><span class="step">200</span><span class="hex">FFD84D</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:#FCEE21" data-hex="#FCEE21"><span class="step">300</span><span class="hex">FCEE21</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:#F7931E" data-hex="#F7931E"><span class="step">400</span><span class="hex">F7931E</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:linear-gradient(135deg,#FCEE21,#F7931E)" data-hex="grad-gold"><span class="step">grad</span><span class="hex">gold</span><span class="copied">✓</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Lime · Win</h3>
+          <div class="ramp" data-copy style="grid-template-columns:repeat(4,1fr)">
+            <div class="swatch lt" style="background:#CCFF00" data-hex="#CCFF00"><span class="step">300</span><span class="hex">CCFF00</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:#C6FC02" data-hex="#C6FC02"><span class="step">400</span><span class="hex">C6FC02</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:#98E51A" data-hex="#98E51A"><span class="step">500</span><span class="hex">98E51A</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:#7CD829" data-hex="#7CD829"><span class="step">600</span><span class="hex">7CD829</span><span class="copied">✓</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Green · Success</h3>
+          <div class="ramp" data-copy style="grid-template-columns:repeat(4,1fr)">
+            <div class="swatch dk" style="background:#2FC431" data-hex="#2FC431"><span class="step">400</span><span class="hex">2FC431</span><span class="copied">✓</span></div>
+            <div class="swatch dk" style="background:#0BBC32" data-hex="#0BBC32"><span class="step">500</span><span class="hex">0BBC32</span><span class="copied">✓</span></div>
+            <div class="swatch dk" style="background:#00BA33" data-hex="#00BA33"><span class="step">600</span><span class="hex">00BA33</span><span class="copied">✓</span></div>
+            <div class="swatch lt" style="background:linear-gradient(135deg,#CCFF00,#00BA33)" data-hex="grad-win"><span class="step">grad</span><span class="hex">win</span><span class="copied">✓</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Semantic States</h3>
+        <div class="sem-grid">
+          <div class="sem" style="background:rgba(11,188,50,.14);border-color:rgba(11,188,50,.4)">
+            <span class="dot" style="background:#0BBC32;box-shadow:0 0 10px #0BBC32"></span>
+            <span class="name">Success</span><span class="hex">#0BBC32</span>
+            <span class="msg">Ganhou R$ 42,00 🎉</span>
+          </div>
+          <div class="sem" style="background:rgba(247,147,30,.14);border-color:rgba(247,147,30,.4)">
+            <span class="dot" style="background:#F7931E;box-shadow:0 0 10px #F7931E"></span>
+            <span class="name">Warning</span><span class="hex">#F7931E</span>
+            <span class="msg">Saldo baixo</span>
+          </div>
+          <div class="sem" style="background:rgba(255,51,85,.14);border-color:rgba(255,51,85,.4)">
+            <span class="dot" style="background:#FF3355;box-shadow:0 0 10px #FF3355"></span>
+            <span class="name">Error</span><span class="hex">#FF3355</span>
+            <span class="msg">Pagamento falhou</span>
+          </div>
+          <div class="sem" style="background:rgba(143,4,224,.14);border-color:rgba(143,4,224,.4)">
+            <span class="dot" style="background:#8F04E0;box-shadow:0 0 10px #8F04E0"></span>
+            <span class="name">Info</span><span class="hex">#8F04E0</span>
+            <span class="msg">Novo torneio hoje</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADIENTS -->
+    <section id="gradients">
+      <div class="sec-head"><h2>Gradients</h2><span class="idx">03</span></div>
+      <p class="sec-intro">Seis estilos harmônicos. Um por tela, como acento — nunca como fundo de corpo. Clique para copiar a variável CSS.</p>
+      <div class="grad-grid" data-copy>
+        <div class="grad" style="background:linear-gradient(180deg,#AB00B9 0%,#3B00CC 100%)" data-hex="var(--grad-cover)"><span class="name">grad-cover</span><div><div class="use">Hero / wordmark shell</div><div class="css">#AB00B9 → #3B00CC</div></div></div>
+        <div class="grad" style="background:linear-gradient(135deg,#3B00CC 0%,#AB00B9 100%)" data-hex="var(--grad-violet)"><span class="name">grad-violet</span><div><div class="use">Feature cards, banners</div><div class="css">#3B00CC → #AB00B9</div></div></div>
+        <div class="grad" style="background:linear-gradient(135deg,#DE00FF 0%,#AB00B9 100%)" data-hex="var(--grad-magenta)"><span class="name">grad-magenta</span><div><div class="use">Primary CTAs, active tabs</div><div class="css">#DE00FF → #AB00B9</div></div></div>
+        <div class="grad" style="background:linear-gradient(135deg,#FF66FF 0%,#8F04E0 100%)" data-hex="var(--grad-hot)"><span class="name">grad-hot</span><div><div class="use">"Hot" tags, promos</div><div class="css">#FF66FF → #8F04E0</div></div></div>
+        <div class="grad" style="background:linear-gradient(135deg,#FCEE21 0%,#F7931E 100%);color:#1a0e25" data-hex="var(--grad-gold)"><span class="name">grad-gold</span><div><div class="use">Depósito, jackpot, moedas</div><div class="css">#FCEE21 → #F7931E</div></div></div>
+        <div class="grad" style="background:linear-gradient(135deg,#CCFF00 0%,#00BA33 100%);color:#0d2600" data-hex="var(--grad-win)"><span class="name">grad-win</span><div><div class="use">Coletar, momento de vitória</div><div class="css">#CCFF00 → #00BA33</div></div></div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography">
+      <div class="sec-head"><h2>Typography</h2><span class="idx">04</span></div>
+      <p class="sec-intro">Luckiest Guy para o display festivo; Inter para toda UI; JetBrains Mono para números tabulares (odds, timers, saldo).</p>
+
+      <div class="panel" style="margin-bottom:18px">
+        <h3>Display · Luckiest Guy</h3>
+        <div class="spec"><div class="meta"><b>display-60</b>60 / 100% / 0.02em</div><div style="font-family:'Luckiest Guy',cursive;font-size:60px;line-height:1;letter-spacing:.02em;color:#fff;text-shadow:0 0 32px rgba(222,0,255,.4)">Dr. Bingo!</div></div>
+        <div class="spec"><div class="meta"><b>display-48</b>48 / 100% / 0.02em</div><div style="font-family:'Luckiest Guy',cursive;font-size:48px;line-height:1;letter-spacing:.02em;color:#fff;text-shadow:0 0 32px rgba(222,0,255,.4)">Jackpot R$ 12M</div></div>
+      </div>
+
+      <div class="panel" style="margin-bottom:18px">
+        <h3>Headings · Inter Bold</h3>
+        <div class="spec"><div class="meta"><b>heading-24</b>Inter 700 · 24/1.2</div><div style="font:700 24px/1.2 Inter">Mais Jogados esta semana</div></div>
+        <div class="spec"><div class="meta"><b>heading-20</b>Inter 700 · 20/1.2</div><div style="font:700 20px/1.2 Inter">Favoritos do Dr. Bingo</div></div>
+        <div class="spec"><div class="meta"><b>heading-18</b>Inter 700 · 18/1.2</div><div style="font:700 18px/1.2 Inter">Torneios ativos</div></div>
+      </div>
+
+      <div class="grid g-2" style="margin-bottom:18px">
+        <div class="panel">
+          <h3>Body · Inter</h3>
+          <div class="spec"><div class="meta"><b>body-16</b>500 · 16/1.5</div><div style="font:500 16px/1.5 Inter;max-width:280px">Jogue o novo Pachinko 3, com rodadas grátis e multiplicadores até 500x.</div></div>
+          <div class="spec"><div class="meta"><b>body-14</b>400 · 14/1.5</div><div style="font:400 14px/1.5 Inter;max-width:280px">Ganhe pontos a cada aposta e troque por prêmios no Club VIP.</div></div>
+          <div class="spec"><div class="meta"><b>body-12</b>400 · 12/1.5</div><div style="font:400 12px/1.5 Inter;color:var(--fg-muted);max-width:280px">Apostas responsáveis · +18 anos · Valor mínimo R$ 1,00</div></div>
+        </div>
+        <div class="panel">
+          <h3>Labels · All-caps Bold</h3>
+          <div class="spec"><div class="meta"><b>label-16</b>Inter 700 · 16</div><div style="font:700 16px/1 Inter;letter-spacing:.04em;text-transform:uppercase;color:#fff">DEPÓSITO</div></div>
+          <div class="spec"><div class="meta"><b>label-14</b>Inter 700 · 14</div><div style="font:700 14px/1 Inter;letter-spacing:.04em;text-transform:uppercase;color:#fff">FAVORITOS</div></div>
+          <div class="spec"><div class="meta"><b>label-12</b>Inter 700 · 12</div><div style="font:700 12px/1 Inter;letter-spacing:.04em;text-transform:uppercase;color:#fff">LIVE CASSINO</div></div>
+          <div class="spec"><div class="meta"><b>label-10</b>Inter 700 · 10</div><div style="font:700 10px/1 Inter;letter-spacing:.04em;text-transform:uppercase;color:#fff">HOT · NOVO</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Mono · JetBrains Mono</h3>
+        <div class="spec"><div class="meta"><b>mono-14</b>Mono 700 · 14</div>
+          <div style="display:flex;gap:22px;align-items:center">
+            <span style="font:700 18px/1 'JetBrains Mono',monospace;color:#fff">⏱ 01:23:45</span>
+            <span style="font:700 18px/1 'JetBrains Mono',monospace;color:#CCFF00">× 1,85</span>
+            <span style="font:700 18px/1 'JetBrains Mono',monospace;color:#FCEE21">R$ 321.434,20</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section id="spacing">
+      <div class="sec-head"><h2>Spacing & Radius</h2><span class="idx">05</span></div>
+      <p class="sec-intro">Escala de 4 pontos. Radius generosos — tudo arredondado. 24 e pill dominam; 56 reservado a painéis-herói.</p>
+
+      <div class="panel" style="margin-bottom:18px">
+        <h3>Spacing · 4-point scale</h3>
+        <div class="scale-row">
+          <div class="step"><div class="bar" style="height:4px"></div><div class="lbl"><b>1</b>4px</div></div>
+          <div class="step"><div class="bar" style="height:8px"></div><div class="lbl"><b>2</b>8</div></div>
+          <div class="step"><div class="bar" style="height:12px"></div><div class="lbl"><b>3</b>12</div></div>
+          <div class="step"><div class="bar" style="height:16px"></div><div class="lbl"><b>4</b>16</div></div>
+          <div class="step"><div class="bar" style="height:20px"></div><div class="lbl"><b>5</b>20</div></div>
+          <div class="step"><div class="bar" style="height:24px"></div><div class="lbl"><b>6</b>24</div></div>
+          <div class="step"><div class="bar" style="height:32px"></div><div class="lbl"><b>8</b>32</div></div>
+          <div class="step"><div class="bar" style="height:40px"></div><div class="lbl"><b>10</b>40</div></div>
+          <div class="step"><div class="bar" style="height:48px"></div><div class="lbl"><b>12</b>48</div></div>
+          <div class="step"><div class="bar" style="height:56px"></div><div class="lbl"><b>14</b>56</div></div>
+          <div class="step"><div class="bar" style="height:64px"></div><div class="lbl"><b>16</b>64</div></div>
+          <div class="step"><div class="bar" style="height:80px"></div><div class="lbl"><b>20</b>80</div></div>
+          <div class="step"><div class="bar" style="height:96px"></div><div class="lbl"><b>24</b>96</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Border Radius</h3>
+        <div class="rad-row">
+          <div class="r"><div class="box" style="border-radius:4px"></div><div class="lbl"><b>xs</b>4</div></div>
+          <div class="r"><div class="box" style="border-radius:8px"></div><div class="lbl"><b>sm</b>8</div></div>
+          <div class="r"><div class="box" style="border-radius:12px"></div><div class="lbl"><b>md</b>12</div></div>
+          <div class="r"><div class="box" style="border-radius:16px"></div><div class="lbl"><b>lg</b>16</div></div>
+          <div class="r"><div class="box" style="border-radius:24px"></div><div class="lbl"><b>xl</b>24</div></div>
+          <div class="r"><div class="box" style="border-radius:32px"></div><div class="lbl"><b>2xl</b>32</div></div>
+          <div class="r"><div class="box" style="border-radius:56px"></div><div class="lbl"><b>3xl</b>56</div></div>
+          <div class="r"><div class="box" style="border-radius:9999px"></div><div class="lbl"><b>pill</b>full</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EFFECTS -->
+    <section id="effects">
+      <div class="sec-head"><h2>Effects</h2><span class="idx">06</span></div>
+      <p class="sec-intro">Glow é a assinatura neon — máximo um por tela. Sombras escuras para elevação, nunca cinza claro. Blur de 29px para efeito vidro (herdado do Figma).</p>
+
+      <div class="panel" style="margin-bottom:18px">
+        <h3>Glow</h3>
+        <div class="fx-grid">
+          <div class="fx"><div class="circle" style="background:#E619FF;box-shadow:0 0 24px rgba(230,25,255,.8),0 0 56px rgba(230,25,255,.35)"></div><span class="nm">glow-magenta</span><span class="hn">Primary CTA</span></div>
+          <div class="fx"><div class="circle" style="background:#8F04E0;box-shadow:0 0 24px rgba(143,4,224,.8),0 0 56px rgba(143,4,224,.35)"></div><span class="nm">glow-violet</span><span class="hn">Active nav / focus</span></div>
+          <div class="fx"><div class="circle" style="background:#FCEE21;box-shadow:0 0 24px rgba(252,238,33,.8),0 0 56px rgba(247,147,30,.35)"></div><span class="nm">glow-gold</span><span class="hn">Deposit / jackpot</span></div>
+          <div class="fx"><div class="circle" style="background:#CCFF00;box-shadow:0 0 24px rgba(204,255,0,.8),0 0 56px rgba(11,188,50,.35)"></div><span class="nm">glow-lime</span><span class="hn">Win / Coletar</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Shadows & Blur</h3>
+        <div class="fx-grid">
+          <div class="fx"><div class="sq" style="box-shadow:0 1px 2px rgba(0,0,0,.3)"></div><span class="nm">shadow-sm</span><span class="hn">Buttons at rest</span></div>
+          <div class="fx"><div class="sq" style="box-shadow:0 4px 12px rgba(0,0,0,.4)"></div><span class="nm">shadow-md</span><span class="hn">Cards, tiles</span></div>
+          <div class="fx"><div class="sq" style="box-shadow:0 12px 32px rgba(0,0,0,.5)"></div><span class="nm">shadow-lg</span><span class="hn">Popovers, menus</span></div>
+          <div class="fx"><div class="sq" style="box-shadow:0 24px 56px rgba(0,0,0,.6)"></div><span class="nm">shadow-xl</span><span class="hn">Modals</span></div>
+        </div>
+        <div style="margin-top:18px;position:relative;height:100px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#AB00B9,#3B00CC)">
+          <div style="position:absolute;inset:14px;background:rgba(38,26,46,.55);backdrop-filter:blur(29px);-webkit-backdrop-filter:blur(29px);border-radius:12px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff;font:800 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase">backdrop-filter: blur(29px) · glass</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING SOON SECTION (hidden components merged here) -->
+    <section id="coming-soon">
+      <div class="sec-head"><h2>Components</h2><span class="idx">07</span></div>
+      <div class="coming-grid">
+        <div class="coming"><span class="material-symbols-rounded">touch_app</span><span class="cn">Buttons</span><span class="cb">Em breve</span></div>
+        <div class="coming"><span class="material-symbols-rounded">sell</span><span class="cn">Tags &amp; Chips</span><span class="cb">Em breve</span></div>
+        <div class="coming"><span class="material-symbols-rounded">text_fields</span><span class="cn">Inputs &amp; Toggles</span><span class="cb">Em breve</span></div>
+        <div class="coming"><span class="material-symbols-rounded">casino</span><span class="cn">Game Tiles</span><span class="cb">Em breve</span></div>
+        <div class="coming"><span class="material-symbols-rounded">view_carousel</span><span class="cn">Top Bar &amp; Tabs</span><span class="cb">Em breve</span></div>
+        <div class="coming"><span class="material-symbols-rounded">wallpaper</span><span class="cn">Hero Banner</span><span class="cb">Em breve</span></div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons" hidden>
+      <div class="sec-head"><h2>Buttons</h2><span class="idx">07</span></div>
+      <p class="sec-intro">Pill format, all-caps. Hover levanta 1px e amplifica o glow. Press faz scale 0.97. Passe o mouse e clique.</p>
+      <div class="panel">
+        <div class="row-wrap" style="margin-bottom:18px">
+          <button class="btn primary" onclick="toast('Jogar agora')">Jogar agora</button>
+          <button class="btn deposit" onclick="toast('Depósito','#FCEE21')">Depósito</button>
+          <button class="btn win" onclick="toast('Coletar','#CCFF00')">Coletar</button>
+          <button class="btn ghost" onclick="toast('Ver todos')">Ver todos</button>
+          <button class="btn soft" onclick="toast('Favoritado ★')">Favoritar</button>
+        </div>
+        <div class="row-wrap">
+          <button class="btn primary btn-sm">Aposta</button>
+          <button class="btn ghost btn-sm">Cancelar</button>
+          <button class="icon-btn" title="Favoritar">♡</button>
+          <button class="icon-btn" style="background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 16px rgba(230,25,255,.45)">★</button>
+          <button class="btn primary disabled">Disabled</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAGS -->
+    <section id="tags" hidden>
+      <div class="sec-head"><h2>Tags & Chips</h2><span class="idx">08</span></div>
+      <p class="sec-intro">Tags de status (Hot, Novo, Live, VIP) e chips selecionáveis. Clique nos chips para alternar a categoria ativa.</p>
+      <div class="panel">
+        <div class="row-wrap" style="margin-bottom:18px">
+          <span class="tag hot">🔥 Hot</span>
+          <span class="tag new">Novo</span>
+          <span class="tag live">Live</span>
+          <span class="tag vip">★ VIP</span>
+          <span class="tag def">Bingo</span>
+          <span class="tag succ">Ganhou</span>
+          <span class="tag err">Falhou</span>
+        </div>
+        <div class="row-wrap" id="chipset">
+          <span class="chip active" data-chip>★ Favoritos</span>
+          <span class="chip" data-chip>Bingo</span>
+          <span class="chip" data-chip>Slots</span>
+          <span class="chip" data-chip>Mais Jogados</span>
+          <span class="chip" data-chip>Live Cassino</span>
+          <span class="chip" data-chip>Crash Game</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUTS -->
+    <section id="inputs" hidden>
+      <div class="sec-head"><h2>Inputs & Toggles</h2><span class="idx">09</span></div>
+      <p class="sec-intro">Campos em superfície escura com borda 1.5px. Foco acende o ring magenta + triple-glow. Toggles mimetizam o CTA primário.</p>
+      <div class="panel">
+        <div class="grid g-2" style="gap:22px">
+          <div class="field"><label>E-mail</label><input class="input" type="email" placeholder="bingo@drbingobet.com"><div class="help">Enviaremos um código</div></div>
+          <div class="field"><label>Senha</label><input class="input" type="password" placeholder="••••••••"><div class="help">Mínimo 8 caracteres</div></div>
+          <div class="field"><label>CPF</label><input class="input error" value="000.000.000-00"><div class="help err">CPF inválido</div></div>
+          <div class="field"><label>Valor do depósito</label><input class="input" type="text" placeholder="R$ 50,00"><div class="help">Mínimo R$ 1,00</div></div>
+        </div>
+        <div style="margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <div class="tog-row"><div class="toggle on" data-toggle></div><span>Notificações</span></div>
+          <div class="tog-row"><div class="toggle on" data-toggle></div><span>E-mails promocionais</span></div>
+          <div class="tog-row"><div class="toggle" data-toggle></div><span>Som da mesa</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TILES -->
+    <section id="tiles" hidden>
+      <div class="sec-head"><h2>Game Tiles</h2><span class="idx">10</span></div>
+      <p class="sec-intro">Capas quadradas com protection gradient embaixo. Hover levanta 3px e revela o play orb magenta.</p>
+      <div class="panel">
+        <div class="tile-grid">
+          <div class="tile" onclick="toast('Abrindo Cosmic Cash')"><div class="img" style="background:linear-gradient(135deg,#3B00CC,#AB00B9)"></div><div class="dim"></div><span class="badge tag hot">🔥 Hot</span><span class="name">Cosmic Cash</span><div class="play">▶</div></div>
+          <div class="tile" onclick="toast('Abrindo Diamond Strike')"><div class="img" style="background:linear-gradient(135deg,#00BA33,#0BBC32)"></div><div class="dim"></div><span class="badge tag new">Novo</span><span class="name">Diamond Strike</span><div class="play">▶</div></div>
+          <div class="tile" onclick="toast('Entrando ao vivo')"><div class="img" style="background:linear-gradient(135deg,#E619FF,#FF66FF)"></div><div class="dim"></div><span class="badge tag live">Live</span><span class="name">Sweet Bonanza</span><div class="play">▶</div></div>
+          <div class="tile" onclick="toast('Jackpot!','#FCEE21')"><div class="img" style="background:linear-gradient(135deg,#F7931E,#FCEE21)"></div><div class="dim"></div><span class="badge tag vip">★ Jackpot</span><span class="name">Olympus Wins</span><div class="play">▶</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <section id="nav-cmp" hidden>
+      <div class="sec-head"><h2>Top Bar & Tabs</h2><span class="idx">11</span></div>
+      <p class="sec-intro">Top bar em forma de pill dark com wordmark, timer, saldo e CTA depósito. Tabs com estado ativo em gradiente magenta + glow.</p>
+      <div class="panel">
+        <div class="topbar">
+          <div class="left"><span class="mark">Dr. BINGO<b>BET</b></span><span class="timer" id="sessionTimer">⏱ 01m 30s</span></div>
+          <div class="right"><span style="color:#FCEE21;font-size:18px;cursor:pointer">🔔</span><span class="dep-pill" onclick="toast('Depósito','#FCEE21')">Depósito</span><span class="bal">R$ 321.434,20</span><span class="ava">JL</span></div>
+        </div>
+        <div class="tabbar" id="tabset">
+          <span class="tab active" data-tab>★ Favoritos</span>
+          <span class="tab" data-tab>Bingo</span>
+          <span class="tab" data-tab>Slots</span>
+          <span class="tab" data-tab>Mais Jogados</span>
+          <span class="tab" data-tab>Exclusivo</span>
+          <span class="tab" data-tab>Live Cassino</span>
+          <span class="tab" data-tab>Game Show</span>
+          <span class="tab" data-tab>Crash</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO BANNER -->
+    <section id="hero-cmp" hidden>
+      <div class="sec-head"><h2>Hero Banner</h2><span class="idx">12</span></div>
+      <p class="sec-intro">Banner do carrossel principal. Fundo gradiente com radial glows, kicker dourado e CTA lima. Clique para simular a ação.</p>
+      <div class="grid g-2">
+        <div class="hero-banner" onclick="toast('Em abril!','#FCEE21')">
+          <div><div class="kick">Lançamento oficial</div><div class="head">Em Abril</div></div>
+          <div class="row"><span class="btn win btn-sm">Saiba mais</span><span style="font-size:48px;position:relative">🎩</span></div>
+        </div>
+        <div class="hero-banner" style="background:linear-gradient(135deg,#DE00FF 0%,#3B00CC 100%)" onclick="toast('Baixe agora','#CCFF00')">
+          <div><div class="kick" style="color:#CCFF00;text-shadow:0 2px 12px rgba(204,255,0,.5)">Exclusivo mobile</div><div class="head">Baixe agora</div></div>
+          <div class="row"><span class="btn deposit btn-sm">Download</span><span style="font-size:48px;position:relative">📱</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section id="icons">
+      <div class="sec-head"><h2>Iconography</h2><span class="idx">08</span></div>
+      <p class="sec-intro">Material Symbols Rounded (Google Fonts) — grid 24px, cantos arredondados. Peso 400 padrão; use FILL 1 para estado selecionado. Hover acende magenta.</p>
+      <div class="panel">
+        <div class="ico-grid">
+          <div class="ico"><span class="material-symbols-rounded">search</span><span class="n">search</span></div>
+          <div class="ico"><span class="material-symbols-rounded">star</span><span class="n">star</span></div>
+          <div class="ico"><span class="material-symbols-rounded">favorite</span><span class="n">favorite</span></div>
+          <div class="ico"><span class="material-symbols-rounded">notifications</span><span class="n">notifications</span></div>
+          <div class="ico"><span class="material-symbols-rounded">account_balance_wallet</span><span class="n">wallet</span></div>
+          <div class="ico"><span class="material-symbols-rounded">home</span><span class="n">home</span></div>
+          <div class="ico"><span class="material-symbols-rounded">emoji_events</span><span class="n">trophy</span></div>
+          <div class="ico"><span class="material-symbols-rounded">target</span><span class="n">target</span></div>
+          <div class="ico"><span class="material-symbols-rounded">person</span><span class="n">person</span></div>
+          <div class="ico"><span class="material-symbols-rounded">menu</span><span class="n">menu</span></div>
+          <div class="ico"><span class="material-symbols-rounded">expand_more</span><span class="n">chevron</span></div>
+          <div class="ico"><span class="material-symbols-rounded">warning</span><span class="n">warning</span></div>
+          <div class="ico"><span class="material-symbols-rounded">cancel</span><span class="n">error</span></div>
+          <div class="ico"><span class="material-symbols-rounded">check_circle</span><span class="n">success</span></div>
+          <div class="ico"><span class="material-symbols-rounded">share</span><span class="n">share</span></div>
+          <div class="ico"><span class="material-symbols-rounded">settings</span><span class="n">settings</span></div>
+          <div class="ico"><span class="material-symbols-rounded">shield</span><span class="n">shield</span></div>
+          <div class="ico"><span class="material-symbols-rounded">list</span><span class="n">list</span></div>
+          <div class="ico"><span class="material-symbols-rounded">diamond</span><span class="n">diamond</span></div>
+          <div class="ico"><span class="material-symbols-rounded">casino</span><span class="n">casino</span></div>
+          <div class="ico"><span class="material-symbols-rounded">local_fire_department</span><span class="n">fire</span></div>
+          <div class="ico"><span class="material-symbols-rounded">payments</span><span class="n">payments</span></div>
+          <div class="ico"><span class="material-symbols-rounded">history</span><span class="n">history</span></div>
+          <div class="ico"><span class="material-symbols-rounded">play_arrow</span><span class="n">play</span></div>
+          <div class="ico"><span class="material-symbols-rounded">add_circle</span><span class="n">add</span></div>
+          <div class="ico"><span class="material-symbols-rounded">logout</span><span class="n">logout</span></div>
+          <div class="ico"><span class="material-symbols-rounded">help</span><span class="n">help</span></div>
+          <div class="ico"><span class="material-symbols-rounded">chat</span><span class="n">chat</span></div>
+          <div class="ico"><span class="material-symbols-rounded">bolt</span><span class="n">bolt</span></div>
+          <div class="ico"><span class="material-symbols-rounded">redeem</span><span class="n">gift</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULES -->
+    <section id="rules">
+      <div class="sec-head"><h2>Usage Rules</h2><span class="idx">09</span></div>
+      <p class="sec-intro">Princípios para manter a linguagem consistente em qualquer tela ou peça.</p>
+      <div class="rules">
+        <div class="rule"><span class="num">1</span><p><b>Um glow por tela.</b> Glows são altos. Mais de um compete e a hierarquia desmorona.</p></div>
+        <div class="rule"><span class="num">2</span><p><b>Gradientes são semânticos.</b> Magenta = ação · Ouro = dinheiro · Lima = vitória. Não cruze.</p></div>
+        <div class="rule"><span class="num">3</span><p><b>Labels em ALL-CAPS bold</b> com letter-spacing 0.04em. Não use label style para headings ou body.</p></div>
+        <div class="rule"><span class="num">4</span><p><b>Luckiest Guy só para display.</b> Nunca abaixo de 32px, nunca em UI chrome.</p></div>
+        <div class="rule"><span class="num">5</span><p><b>Superfície escura primeiro.</b> Superfícies claras não existem neste sistema.</p></div>
+        <div class="rule"><span class="num">6</span><p><b>Pills &gt; squares.</b> Na dúvida, radius 999.</p></div>
+        <div class="rule"><span class="num">7</span><p><b>Mono para dígitos que importam</b> (saldo, multiplicador, timer) — encaixe tabular.</p></div>
+        <div class="rule"><span class="num">8</span><p><b>Protection gradient antes de texto sobre imagem.</b> Nunca coloque label direto em imagem crua.</p></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="toast">Copiado <b>#AB00B9</b></div>
+
+<script>
+  // ─── TOAST ───
+  const toastEl = document.getElementById('toast');
+  let toastTimer;
+  function toast(msg, color){
+    toastEl.innerHTML = msg.startsWith('#') || msg.startsWith('var(') ? `Copiado <b>${msg}</b>` : msg;
+    if(color) toastEl.querySelector('b') && (toastEl.querySelector('b').style.color = color);
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 1600);
+  }
+
+  // ─── COPY SWATCHES ───
+  document.querySelectorAll('[data-copy] [data-hex]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const hex = el.dataset.hex;
+      navigator.clipboard?.writeText(hex).catch(()=>{});
+      el.classList.add('copied-flash');
+      setTimeout(()=>el.classList.remove('copied-flash'), 900);
+      toast(hex);
+    });
+  });
+
+  // ─── CHIPS ───
+  document.querySelectorAll('#chipset [data-chip]').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('#chipset [data-chip]').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  // ─── TABS ───
+  document.querySelectorAll('#tabset [data-tab]').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('#tabset [data-tab]').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // ─── TOGGLES ───
+  document.querySelectorAll('[data-toggle]').forEach(t=>{
+    t.addEventListener('click', ()=>t.classList.toggle('on'));
+  });
+
+  // ─── LIVE SESSION TIMER ───
+  const timer = document.getElementById('sessionTimer');
+  let s = 90;
+  setInterval(()=>{
+    s++;
+    const m = Math.floor(s/60), r = s%60;
+    timer.textContent = `⏱ ${String(m).padStart(2,'0')}m ${String(r).padStart(2,'0')}s`;
+  }, 1000);
+
+  // ─── NAV SCROLL SPY ───
+  const links = [...document.querySelectorAll('#nav a')];
+  const sections = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function spy(){
+    const y = window.scrollY + 120;
+    let active = sections[0];
+    for(const s of sections){ if(s.offsetTop <= y) active = s; }
+    links.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+active.id));
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  spy();
+
+  // smooth anchor
+  links.forEach(a=>a.addEventListener('click', e=>{
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+  .tag{border-radius:9999px;padding:6px 12px;font:700 10px/1 Inter;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;gap:6px;align-items:center}
+  .dot{width:6px;height:6px;border-radius:50%}
+  .t-hot{background:linear-gradient(135deg,#FF66FF,#8F04E0);color:#fff;box-shadow:0 0 14px rgba(255,102,255,.4)}
+  .t-new{background:#CCFF00;color:#0d2600}
+  .t-live{background:#FF3355;color:#fff}
+  .t-vip{background:linear-gradient(135deg,#FCEE21,#F7931E);color:#261A2E}
+  .t-def{background:rgba(243,230,250,.1);color:#F3E6FA;border:1px solid rgba(243,230,250,.2)}
+  .t-succ{background:rgba(11,188,50,.16);color:#7CD829;border:1px solid rgba(11,188,50,.4)}
+  .t-err{background:rgba(255,51,85,.16);color:#FF8899;border:1px solid rgba(255,51,85,.4)}
+  .chip{border-radius:9999px;padding:10px 18px;font:700 13px/1 Inter;background:rgba(243,230,250,.08);color:#fff;border:1px solid rgba(243,230,250,.12);display:inline-flex;gap:8px;align-items:center}
+  .chip.active{background:linear-gradient(135deg,#DE00FF,#AB00B9);border-color:transparent;box-shadow:0 0 20px rgba(230,25,255,.45)}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Tags & Chips</p>
+  <p class="sub">Tags categorize content (Hot, Novo, Live, VIP). Chips are selectable filters — active chip takes the magenta gradient.</p>
+  <div class="row">
+    <span class="tag t-hot">🔥 Hot</span>
+    <span class="tag t-new">Novo</span>
+    <span class="tag t-live"><span class="dot" style="background:#fff"></span> Live</span>
+    <span class="tag t-vip">★ VIP</span>
+    <span class="tag t-def">Bingo</span>
+    <span class="tag t-succ">Ganhou</span>
+    <span class="tag t-err">Falhou</span>
+  </div>
+  <div class="row" style="margin-top:8px">
+    <span class="chip active">★ Favoritos</span>
+    <span class="chip">Bingo</span>
+    <span class="chip">Slots</span>
+    <span class="chip">Mais Jogados</span>
+    <span class="chip">Live Cassino</span>
+  </div>
+</div></body></html>

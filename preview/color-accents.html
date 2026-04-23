@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:22px 26px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .group{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .g-title{font:900 11px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);grid-column:1/-1;margin:14px 0 0}
+  .swatch{height:72px;border-radius:12px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between}
+  .swatch .step{font:800 10px/1 var(--font-sans);letter-spacing:.04em}
+  .swatch .hex{font:500 10px/1 var(--font-mono);opacity:.85}
+  .swatch.lt{color:#15091F}
+  .swatch.dk{color:#fff}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 14px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Accents — Magenta, Gold, Lime, Green</p>
+  <p class="sub">High-energy accents for CTAs, jackpots, wins and status. Use one per surface to preserve hierarchy.</p>
+  <div class="group">
+    <p class="g-title">Magenta / Pink — Primary CTA</p>
+    <div class="swatch dk" style="background:#FF66FF"><span class="step">magenta-300</span><span class="hex">#FF66FF</span></div>
+    <div class="swatch dk" style="background:#FB5AFF"><span class="step">magenta-400</span><span class="hex">#FB5AFF</span></div>
+    <div class="swatch dk" style="background:#E619FF"><span class="step">magenta-500</span><span class="hex">#E619FF</span></div>
+    <div class="swatch dk" style="background:#DE00FF"><span class="step">magenta-600</span><span class="hex">#DE00FF</span></div>
+
+    <p class="g-title">Gold — Deposit / Coin / Jackpot</p>
+    <div class="swatch lt" style="background:#FCEE21"><span class="step">gold-300</span><span class="hex">#FCEE21</span></div>
+    <div class="swatch lt" style="background:#F7931E"><span class="step">gold-400</span><span class="hex">#F7931E</span></div>
+    <div class="swatch lt" style="background:linear-gradient(135deg,#FCEE21,#F7931E)"><span class="step">grad-gold</span><span class="hex">style</span></div>
+    <div class="swatch lt" style="background:#FFD84D"><span class="step">gold-200 ext</span><span class="hex">#FFD84D</span></div>
+
+    <p class="g-title">Lime & Green — Win / Success</p>
+    <div class="swatch lt" style="background:#CCFF00"><span class="step">lime-300</span><span class="hex">#CCFF00</span></div>
+    <div class="swatch lt" style="background:#98E51A"><span class="step">lime-500</span><span class="hex">#98E51A</span></div>
+    <div class="swatch dk" style="background:#0BBC32"><span class="step">green-500</span><span class="hex">#0BBC32</span></div>
+    <div class="swatch dk" style="background:#00BA33"><span class="step">green-600</span><span class="hex">#00BA33</span></div>
+  </div>
+</div></body></html>

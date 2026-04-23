@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 20px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .t{background:#15091F;border-radius:16px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.04)}
+  .dot{width:48px;height:48px;border-radius:50%}
+  .nm{font:800 10px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:#fff}
+  .hn{font:500 9.5px/1.2 var(--font-mono);color:var(--fg-muted);text-align:center}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Glows — the neon signature</p>
+  <p class="sub">A double-layer box-shadow radiates accent color. Use on hover for CTAs, on active tabs, on jackpot tiles. Never stack more than one glow per screen.</p>
+  <div class="grid">
+    <div class="t"><div class="dot" style="background:#E619FF;box-shadow:0 0 24px rgba(230,25,255,.8),0 0 56px rgba(230,25,255,.35)"></div><span class="nm">glow-magenta</span><span class="hn">on primary CTAs</span></div>
+    <div class="t"><div class="dot" style="background:#8F04E0;box-shadow:0 0 24px rgba(143,4,224,.8),0 0 56px rgba(143,4,224,.35)"></div><span class="nm">glow-violet</span><span class="hn">active nav / focus</span></div>
+    <div class="t"><div class="dot" style="background:#FCEE21;box-shadow:0 0 24px rgba(252,238,33,.8),0 0 56px rgba(247,147,30,.35)"></div><span class="nm">glow-gold</span><span class="hn">deposit / jackpot</span></div>
+    <div class="t"><div class="dot" style="background:#CCFF00;box-shadow:0 0 24px rgba(204,255,0,.8),0 0 56px rgba(11,188,50,.35)"></div><span class="nm">glow-lime</span><span class="hn">win / "coletar"</span></div>
+  </div>
+</div></body></html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .strokes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+  .s{background:#15091F;border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.04)}
+  .line{width:72px;background:#fff;border-radius:2px}
+  .nm{font:800 10px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase}
+  .hn{font:500 9.5px/1.2 var(--font-mono);color:var(--fg-muted)}
+  .ops{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .op{position:relative;aspect-ratio:1;border-radius:10px;display:flex;align-items:end;justify-content:center;padding:8px;background:#E619FF;color:#fff;font:700 10px/1 'JetBrains Mono',monospace}
+  .op::after{content:"";position:absolute;inset:0;background:#0D051E;border-radius:inherit;opacity:var(--o)}
+  .op span{position:relative;z-index:1;mix-blend-mode:normal}
+  h4{font:800 11px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);margin:0 0 10px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Stroke & Opacity</p>
+  <p class="sub">Hairline 1px borders on cards; 2–3px for stat callouts. Opacity scale used for disabled states, overlays and glow alpha.</p>
+  <h4>Stroke</h4>
+  <div class="strokes">
+    <div class="s"><div class="line" style="height:1px"></div><span class="nm">hairline</span><span class="hn">1px · dividers</span></div>
+    <div class="s"><div class="line" style="height:1.5px"></div><span class="nm">regular</span><span class="hn">1.5px · cards</span></div>
+    <div class="s"><div class="line" style="height:2px"></div><span class="nm">bold</span><span class="hn">2px · inputs</span></div>
+    <div class="s"><div class="line" style="height:3px"></div><span class="nm">chunky</span><span class="hn">3px · stats</span></div>
+  </div>
+  <h4>Opacity</h4>
+  <div class="ops">
+    <div class="op" style="--o:0"><span>100</span></div>
+    <div class="op" style="--o:.15"><span>85</span></div>
+    <div class="op" style="--o:.28"><span>72</span></div>
+    <div class="op" style="--o:.40"><span>60</span></div>
+    <div class="op" style="--o:.60"><span>40 · disabled</span></div>
+  </div>
+</div></body></html>

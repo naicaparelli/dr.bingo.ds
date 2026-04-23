@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0D051E;font-family:var(--font-sans)}
+  .card{width:700px;padding:24px 28px;box-sizing:border-box;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--fg-primary)}
+  .title{font:900 13px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+  .sub{font:400 11px/1.4 var(--font-sans);color:var(--fg-muted);margin:0 0 18px}
+  .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{border:0;cursor:pointer;font:700 13px/1 Inter;letter-spacing:.04em;text-transform:uppercase;padding:12px 22px;border-radius:9999px;color:#fff;transition:all .2s cubic-bezier(.22,1,.36,1)}
+  .btn:hover{transform:translateY(-1px)}
+  .primary{background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 20px rgba(230,25,255,.45),0 6px 16px rgba(0,0,0,.35)}
+  .deposit{background:linear-gradient(135deg,#FCEE21,#F7931E);color:#261A2E;box-shadow:0 0 20px rgba(252,238,33,.45),0 6px 16px rgba(0,0,0,.35)}
+  .win{background:linear-gradient(135deg,#CCFF00,#00BA33);color:#0d2600;box-shadow:0 0 20px rgba(204,255,0,.45),0 6px 16px rgba(0,0,0,.35)}
+  .ghost{background:transparent;border:1.5px solid rgba(243,230,250,.32);color:#fff}
+  .ghost:hover{border-color:#E619FF;color:#E619FF;box-shadow:0 0 20px rgba(230,25,255,.35)}
+  .soft{background:rgba(230,25,255,.14);color:#FB5AFF;border:1px solid rgba(230,25,255,.3)}
+  .icon{padding:12px;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(243,230,250,.08);color:#fff}
+  .sm{padding:8px 14px;font-size:11px}
+</style></head>
+<body>
+<div class="card">
+  <p class="title">Buttons</p>
+  <p class="sub">Pill-shaped, all-caps labels. Primary carries a magenta glow; Deposit uses the gold gradient; Win uses the lime gradient. Hover lifts 1px + amplifies glow.</p>
+  <div class="row" style="margin-bottom:14px">
+    <button class="btn primary">Jogar agora</button>
+    <button class="btn deposit">Depósito</button>
+    <button class="btn win">Coletar</button>
+    <button class="btn ghost">Ver todos</button>
+    <button class="btn soft">Favoritar</button>
+  </div>
+  <div class="row">
+    <button class="btn primary sm">Aposta</button>
+    <button class="btn ghost sm">Cancelar</button>
+    <span class="icon">♡</span>
+    <span class="icon" style="background:linear-gradient(135deg,#DE00FF,#AB00B9);box-shadow:0 0 16px rgba(230,25,255,.45)">★</span>
+    <button class="btn primary" style="opacity:.4;cursor:not-allowed;box-shadow:none">Disabled</button>
+  </div>
+</div></body></html>
